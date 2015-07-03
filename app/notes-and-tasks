@@ -1,0 +1,42 @@
+Action Items Immediate:
+surveys page need to loop through survey records and show all surveys with links.
+- Not able to leave fields as blank when creating a question
+
+Action Items Later:
+- /randomsurveyId/addquestions works ... it should not load the page.
+- add select box type question component
+- add stars question component
+
+Questions:
+- In addQuestion route, in the actions I'm unable to access the model. When I console.log
+this.get('model'), it prints undefined. So I'm continuing to use modelFor('survey') in the action.
+
+- In routes/survey/index, why are we returning an 'afterModel'? Where does it get used? It works even without.
+
+- How do I get the params from the URL at the level of addquestions or takesurvey?
+
+- Is it ember g response-set or responseSet?
+
+
+
+- Is the responses field types correct?
+
+- Can one question belong to more than one survey? If yes, how do I represent this in DB?
+
+- How does cloning of surveys work?
+
+- How does cloning of questions work?
+
+- How do I serialize form responses?
+
+- Do I need to wrap survey questions in a <form> tag?
+
+- What is X-Forms and do I need it here?
+
+- How to change bootstrap CSS properties via admin interface?
+
+
+
+
+********
+respondentId | Response to Question 1 | Response to Question 2 | Response to Question 3 ...

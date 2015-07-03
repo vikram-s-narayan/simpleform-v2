@@ -1,0 +1,16 @@
+<b> view reports here </b><br>
+<table>
+
+{{#each model as |responseSet|}}
+<tr>
+
+  {{#each responseSet.responses as |responses|}}
+    <td>
+    {{responses.answerValue}}
+    </td>
+  {{/each}}
+
+</tr>
+{{/each}}
+
+</table>

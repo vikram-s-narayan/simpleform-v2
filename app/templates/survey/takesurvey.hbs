@@ -1,0 +1,8 @@
+Take survey here.
+<br>
+{{#each model as |question|}}
+  {{component question.type question=question}}
+  <br>
+{{/each}}
+
+<button {{action "saveSurvey"}}> Save Survey </button>

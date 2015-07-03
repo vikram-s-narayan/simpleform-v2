@@ -4,6 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'simpleform-v2',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
+    firebase: 'https://simpleformv2.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
