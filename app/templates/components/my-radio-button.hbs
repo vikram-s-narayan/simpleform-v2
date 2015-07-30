@@ -1,0 +1,12 @@
+
+{{question.questionText}}<br>
+{{#each question.optionsArray as |option|}}
+
+{{radio-button
+    value=option
+    groupValue=question.questionText
+    changed="radioAction"}}
+{{option}}<br>
+
+
+{{/each}}

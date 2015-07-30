@@ -10,3 +10,21 @@ rows: {{input type="text" value=rows}}<br>
 optionsArray: {{input type="text" value=optionsArray}}<br>
 questionText: {{input type="text" value=questionText}}<br>
 <button {{action 'addQuestion'}}> Add Question </button>
+
+
+<br>--------<br>
+<p>
+Or add a radio-grid question below: <br>
+
+Question Text: {{input type="text" value=radioGridQuestionText}}<br>
+Options: {{input type="text" value=radioGridOptions}}<br>
+statements(long and short): {{input type="text" value=radioGridStatements}}<br>
+(separate long and short with a ',' and sets of statements with '****')
+
+<br>
+<button {{action 'addRadioGridQuestion'}}> Add Radio Grid Question </button>
+
+
+
+
+</p>

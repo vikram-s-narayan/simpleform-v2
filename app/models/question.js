@@ -5,10 +5,19 @@ export default DS.Model.extend({
   type: DS.attr(),
   name: DS.attr(),
   placeholder: DS.attr(),
-  value: DS.attr(),
+  value: '', //not a property we want to save.
+  //value: DS.attr(),//value should be a simple string as it is not part of the data store
   cols: DS.attr(),
   rows: DS.attr(),
   optionsArray: DS.attr(),
   questionText: DS.attr(),
-  responses: DS.hasMany('response', {async: true})
+  responses: DS.hasMany('response', {async: true}),
+  radioGridStatements: DS.attr(), //this is for radioGrid Question and should contain long, short and selected
+  radioGridOptions: DS.attr(),//this is for radioGrid Question
+  //radioGridStatementsLong: DS.attr(),
+  //radioGridStatementsShort: DS.attr(),
+  /*statements: [
+  { long: 'statement one', short: 'one', selected: null },
+  { long: 'statement two', short: 'two', selected: null },
+]*/
 });

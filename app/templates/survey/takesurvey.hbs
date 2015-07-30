@@ -1,7 +1,7 @@
 Take survey here.
 <br>
 {{#each model as |question|}}
-  {{component question.type question=question}}
+  {{component question.type question=question setAction="updateResponse"}}
   <br>
 {{/each}}
 

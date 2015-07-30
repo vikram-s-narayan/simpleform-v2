@@ -9,6 +9,13 @@ export default Ember.Route.extend({
     });
   },
   actions: {
+    updateResponse: function(params){
+      console.log((params.questionValue));
+      var value = params.questionValue;
+      this.store.find('question', params.questionId).then(function(question){
+        question.set('value', value);
+      });
+    },
     saveSurvey: function(){
       var controller = this.get('controller');
       var survey = this.modelFor('survey');
@@ -16,14 +23,19 @@ export default Ember.Route.extend({
       var responseSet = this.store.createRecord('response-set', {
         survey: survey
       });
-
       controller.get('model').forEach(function(item){
+        console.log(item.get('value'));
+        if(item.get('type')==='multi-select'){
+
+          //get the object's value property.
+
+      }
         var response = _this.store.createRecord('response',{
-          survey: survey, //is this reference unnecessary?
+          survey: survey,
           question: item,
           answerValue: item.get('value')
         });
-        response.save();//can this action be removed and response table be removed?
+        response.save();
         survey.get('responses').addObject(response);//again, survey may not need this reference.
         responseSet.get('responses').addObject(response);
       });

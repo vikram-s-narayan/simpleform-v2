@@ -1,16 +1,29 @@
 <b> view reports here </b><br>
 <table>
-
-{{#each model as |responseSet|}}
+  {{#each model as |responseSet|}}
 <tr>
+  {{#each responseSet.responses as |response|}}
 
-  {{#each responseSet.responses as |responses|}}
-    <td>
-    {{responses.answerValue}}
-    </td>
+      {{#if response.isRadioGrid}}
+
+        {{#each response.answerValue as |radioGridResponse|}}
+        <td>
+          {{radioGridResponse.long}}: {{radioGridResponse.selected}}
+        </td>
+        {{/each}}
+
+      {{else}}
+      <td>
+      {{response.answerValue}}
+      </td>
+      {{/if}}
+
+
+
+
   {{/each}}
-
 </tr>
-{{/each}}
-
+  {{/each}}
 </table>
+
+{{responseSetStatus}}

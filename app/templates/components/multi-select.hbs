@@ -1,0 +1,13 @@
+
+{{input type="text" action="sendData" on="focus-out"}} test
+<input type="checkbox" {{action "sendData" on="change"}}> test1
+{{#multiselect-checkboxes options=question.optionsArray as |label isSelected|}}
+  <li>
+    <label>
+      <input type="checkbox" checked=isSelected {{action "sendData" on="change"}}>
+      {{label}}
+    </label>
+  </li>
+{{/multiselect-checkboxes}}
+
+<br>

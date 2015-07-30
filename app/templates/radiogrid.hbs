@@ -1,0 +1,28 @@
+
+{{model.questionText}}
+
+<table>
+  <tr>
+    <td>
+      
+    </td>
+    {{#each model.options as |option|}}
+      <td>
+        {{option}}
+      </td>
+    {{/each}}
+  </tr>
+{{#each model.statements as |statement|}}
+  <tr>{{statement.long}}
+{{#each model.options as |option|}}
+<td>
+  {{#radio-button
+      value=option
+      groupValue=statement.short
+      changed="optionChosen"}}
+{{/radio-button}}
+</td>
+{{/each}}
+</tr>
+{{/each}}
+</table>

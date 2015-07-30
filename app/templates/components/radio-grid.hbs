@@ -1,0 +1,42 @@
+{{question.questionText}}
+
+
+<table>
+
+  <tr>
+    <td>
+
+    </td>
+    {{#each question.radioGridOptions as |option|}}
+      <td>
+        {{option}}
+      </td>
+    {{/each}}
+  </tr>
+{{#each question.radioGridStatements as |componentStatement|}}
+<tr>
+<td>
+  {{componentStatement.long}}<br>
+</td>
+{{#each question.radioGridOptions as |option|}}
+
+
+<td>
+
+  {{#radio-button
+
+      value=option
+      groupValue=componentStatement.selected
+      changed="optionChosen"}}
+      
+{{/radio-button}}
+</td>
+
+{{/each}}
+
+</tr>
+{{/each}}
+
+
+
+</table>
