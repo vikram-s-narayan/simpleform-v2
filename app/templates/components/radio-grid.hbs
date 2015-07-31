@@ -21,14 +21,14 @@
 {{#each question.radioGridOptions as |option|}}
 
 
-<td>
+<td tabindex="0">
 
   {{#radio-button
 
       value=option
       groupValue=componentStatement.selected
       changed="optionChosen"}}
-      
+
 {{/radio-button}}
 </td>
 
