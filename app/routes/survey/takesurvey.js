@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  //errorMessage: '', =>controller.set('errorMessage',)
   model: function(){
     var surveyId = this.modelFor('survey').id;
     console.log(surveyId);
@@ -16,54 +17,57 @@ export default Ember.Route.extend({
         question.set('value', value);
       });
     },
+
     saveSurvey: function(){
       var controller = this.get('controller');
       var survey = this.modelFor('survey');
       var _this=this;
-      var responseSet = this.store.createRecord('response-set', {
+      var unAnswered = [];
+
+      //check each item to see if complete and return array of unAnwered items
+      controller.get('model').forEach(function(item){
+        var itemVal = item.get('value');
+        if(itemVal===undefined||itemVal.length<=1){
+          unAnswered.push(item);
+        }
+      });
+
+      //if even one unAnwered item, send message to user. Else call on saveSurveyOperation
+      if(unAnswered.length>0){
+        controller.set('unAnsweredItemsList', unAnswered);
+
+
+        unAnswered.forEach(function(item){
+
+          console.log('unAnswered =>',item);
+          
+        });
+      } else {
+        console.log('all answered');
+        saveResponses();
+      }
+      //saveOperation - save each response
+
+    function saveResponses(){
+      alert('good job');
+      var responseSet = _this.store.createRecord('response-set', {
         survey: survey
       });
       controller.get('model').forEach(function(item){
         console.log(item.get('value'));
-        if(item.get('type')==='multi-select'){
-
-          //get the object's value property.
-
-      }
         var response = _this.store.createRecord('response',{
-          survey: survey,
-          question: item,
-          answerValue: item.get('value')
-        });
-        response.save();
-        survey.get('responses').addObject(response);//again, survey may not need this reference.
-        responseSet.get('responses').addObject(response);
+         survey: survey,
+         question: item,
+         answerValue: item.get('value')
+       });
+       response.save();
+      survey.get('responses').addObject(response);//again, survey may not need this reference.
+      responseSet.get('responses').addObject(response);
       });
       survey.save();
       responseSet.save();
     }
-  /*
-      //below section works just fine
-      saveSurvey: function(){
-      alert('hi');
-      var controller = this.get('controller');
-      //var surveyId = this.modelFor('survey').id;
-      var survey = this.modelFor('survey');
-      var _this=this;
-      controller.get('model').forEach(function(item) {
-      var response = _this.store.createRecord('response',{
-      //surveyId: surveyId,
-      survey: survey,
-      //questionId: item.get('id'),
-      question: item,
-      answerValue: item.get('value')
-      });
-      response.save();//can this and response-set be added to response table?
-      survey.get('responses').addObject(response);
 
-    });
-    survey.save();
-
-  }*/
-  }
-});
+      }
+    }
+  });

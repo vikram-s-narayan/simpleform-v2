@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   inputVal: '',
+  
   inputValDidChange: function(){
 
     //this.set('question.value', this.get('inputVal'));

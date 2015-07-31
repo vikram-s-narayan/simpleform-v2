@@ -7,7 +7,7 @@ placeholder: {{input type="text" value=placeholder}}<br>
 value: {{input type="text" value=value}}<br>
 cols: {{input type="text" value=cols}}<br>
 rows: {{input type="text" value=rows}}<br>
-optionsArray: {{input type="text" value=optionsArray}}<br>
+optionsArray: {{input type="text" value=optionsArray}}(separate with '|')<br>
 questionText: {{input type="text" value=questionText}}<br>
 <button {{action 'addQuestion'}}> Add Question </button>
 
@@ -18,8 +18,9 @@ Or add a radio-grid question below: <br>
 
 Question Text: {{input type="text" value=radioGridQuestionText}}<br>
 Options: {{input type="text" value=radioGridOptions}}<br>
-statements(long and short): {{input type="text" value=radioGridStatements}}<br>
-(separate long and short with a ',' and sets of statements with '****')
+(separate statements with '|')<br>
+statements: {{input type="text" value=radioGridStatements}}<br>
+(separate statements with '|')
 
 <br>
 <button {{action 'addRadioGridQuestion'}}> Add Radio Grid Question </button>

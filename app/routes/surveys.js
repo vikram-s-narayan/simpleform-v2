@@ -11,7 +11,7 @@ export default Ember.Route.extend({
       var survey = this.store.createRecord('survey',
       controller.getProperties('title'));
       survey.save().then(function() {
-        router.transitionTo('survey.addquestions', survey);
+        router.transitionTo('survey.addquestions', survey.get('id'));
       });
     }
   }

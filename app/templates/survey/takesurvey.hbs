@@ -1,4 +1,12 @@
-Take survey here.
+Take survey here.<br>
+{{#if unAnsweredItemsList}}
+<div style="background-color: red">
+The following items are unanswered:
+{{#each unAnsweredItemsList as |item|}}<br>
+{{item.questionText}}
+{{/each}}
+</div>
+{{/if}}
 <br>
 {{#each model as |question|}}
   {{component question.type question=question setAction="updateResponse"}}
