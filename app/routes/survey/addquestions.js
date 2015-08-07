@@ -20,6 +20,7 @@ export default Ember.Route.extend({
       var rows = controller.get('rows');
       var optionsArray = controller.get('optionsArray').split('|');
       var questionText = controller.get('questionText');
+      var isRequired = controller.get('isRequired');
       var store = this.store;
 
       this.store.find('survey', survey).then(function(survey){
@@ -34,7 +35,8 @@ export default Ember.Route.extend({
           optionsArray: optionsArray,
           questionText: questionText,
           radioGridOptions: '',
-          radioGridStatements: ''
+          radioGridStatements: '',
+          isRequired: isRequired
           });
           question.save();
         survey.get('questions').then(function(questions){
@@ -53,6 +55,7 @@ export default Ember.Route.extend({
         return {'long': statement};
       });
       var radioGridOptions = controller.get('radioGridOptions').split('|');
+      var isRequired = controller.get('isRequired');
 
 
         store.find('survey', survey).then(function(survey){
@@ -68,6 +71,7 @@ export default Ember.Route.extend({
                 cols: '',
                 rows: '',
                 optionsArray:'',
+                isRequired: isRequired
               });
               console.log('about to do question.save()');
               question.save()
@@ -86,6 +90,16 @@ export default Ember.Route.extend({
               survey.save();
             });
       });
+    },
+    reorderItems(newSortedQuestionsArray, draggedModel) {
+      newSortedQuestionsArray.forEach(function(question, newPosition) {
+      question.set('position', newPosition);
+
+      if (question.get('isDirty')) { //if local model has changed but has not yet been sent to Firebase
+        question.save();
       }
+    });
+
+    }
   }
 });

@@ -1,0 +1,8 @@
+{
+  "firebase": "simpleformv2",
+  "public": "dist",
+  "rewrites": [{
+    "source": "**",
+    "destination": "/index.html"
+  }]
+}

@@ -9,6 +9,7 @@ cols: {{input type="text" value=cols}}<br>
 rows: {{input type="text" value=rows}}<br>
 optionsArray: {{input type="text" value=optionsArray}}(separate with '|')<br>
 questionText: {{input type="text" value=questionText}}<br>
+Required: {{input type="checkbox" name="isRequired" checked=isRequired}}<br>
 <button {{action 'addQuestion'}}> Add Question </button>
 
 
@@ -21,11 +22,20 @@ Options: {{input type="text" value=radioGridOptions}}<br>
 (separate statements with '|')<br>
 statements: {{input type="text" value=radioGridStatements}}<br>
 (separate statements with '|')
-
 <br>
+Required: {{input type="checkbox" name="isRequired" checked=isRequired}}<br>
 <button {{action 'addRadioGridQuestion'}}> Add Radio Grid Question </button>
 
 
+</p>
 
-
+<p>
+{{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
+  {{#each model.sortedQuestions as |question|}}
+  {{#sortable-item tagName="li" model=question group=group handle=".handle"}}
+    {{question.questionText}}
+    <span class="handle">&varr;</span>
+  {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}
 </p>

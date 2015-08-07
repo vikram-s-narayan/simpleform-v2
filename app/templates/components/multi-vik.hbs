@@ -1,2 +1,5 @@
+{{question.questionText}}<br>
+{{#if question.isRequired}}
+  (required)
+{{/if}}
 {{multiselect-checkboxes options=question.optionsArray selection=selectedOptions}}<br>
-{{question.id}}=> question id

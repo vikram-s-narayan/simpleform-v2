@@ -1,3 +1,6 @@
 {{question.questionText}}<br>
+{{#if question.isRequired}}
+  (required)
+{{/if}}
 {{view "select" content=question.optionsArray value=inputVal
 prompt=question.placeholder class="form-control"}}

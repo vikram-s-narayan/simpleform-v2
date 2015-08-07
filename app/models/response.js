@@ -10,6 +10,5 @@ export default DS.Model.extend({
   responseSet: DS.belongsTo('response-set', { async: true }),
   isRadioGrid: function(){
     return Ember.isArray(this.get('answerValue'));
-
   }.property('answerValue')
 });

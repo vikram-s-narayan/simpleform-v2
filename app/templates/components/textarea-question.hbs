@@ -2,3 +2,7 @@
 {{textarea placeholder=question.placeholder value=inputVal cols=question.cols rows=question.rows maxlength="140"}}
 {{inputVal}}<br>
 {{charactersRemaining}}
+<br>
+{{#if question.isRequired}}
+  (required)
+{{/if}}

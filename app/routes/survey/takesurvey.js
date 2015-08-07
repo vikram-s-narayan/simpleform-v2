@@ -5,7 +5,12 @@ export default Ember.Route.extend({
   model: function(){
     var surveyId = this.modelFor('survey').id;
     return this.store.find('survey', surveyId).then(function(survey){
-      return survey.get("questions");
+      var questions = survey.get('sortedQuestions');
+      return {
+        survey: survey,
+        questions: questions
+      };
+      //return survey.get("sortedQuestions");
     });
   },
   actions: {
@@ -23,18 +28,21 @@ export default Ember.Route.extend({
       var unAnswered = [];
 
       //check each item to see if complete and return array of unAnwered items
-      controller.get('model').forEach(function(item){
+      controller.get('model.questions').forEach(function(item){
+        var isRequired = item.get('isRequired');
         if(item.get('radioGridStatements')===''){
           console.log('entering non-radio-grid section');
           var itemVal = item.get('value');
-          if(itemVal===undefined||itemVal.length<=1){
+
+          if(isRequired && itemVal===undefined||isRequired && itemVal.length<=1){
             unAnswered.push(item);
           }
         } else {
             console.log('entering radio-grid checking section');
+
               var allGood = true;
-            item.get('value').forEach(function(item){
-              if(item.selected===undefined){
+              (item.get('value')||['nothing here']).forEach(function(item){
+              if(isRequired && item.selected===undefined || isRequired && item.selected==='nothing here'){
                 allGood = false;
               }
             });
@@ -58,7 +66,7 @@ export default Ember.Route.extend({
       var responseSet = _this.store.createRecord('response-set', {
         survey: survey
       });
-      controller.get('model').forEach(function(item){
+      controller.get('model.questions').forEach(function(item){
         var response = _this.store.createRecord('response',{
          survey: survey,
          question: item,

@@ -1,5 +1,8 @@
 
 {{question.questionText}}<br>
+{{#if question.isRequired}}
+  (required)
+{{/if}}
 {{#each question.optionsArray as |option|}}
 
 {{radio-button

@@ -1,0 +1,13 @@
+
+{{#if uploadedLogo}}
+  <img src={{uploadedLogo}} />
+  <button {{action "setShowUploadTrue"}}> Upload Another Logo </button>
+{{else}}
+  <button {{action "setShowUploadTrue"}}> Upload Logo </button>
+{{/if}}
+
+{{#if showUploadSection}}
+{{ember-filepicker pickerOptions=pickerOptions
+  storeOptions=storeOptions onSelection='fileSelected'
+  onClose='onClose' onError='onError'}}
+{{/if}}

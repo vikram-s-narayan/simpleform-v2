@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://simpleformv2.firebaseio.com/',
+    filepickerKey: 'AtVdvx7J2S5eIxbmYpizgz',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {

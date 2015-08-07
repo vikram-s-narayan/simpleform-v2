@@ -1,3 +1,4 @@
+<img class='companyLogo' src={{model.survey.logo}} /><br>
 Take survey here.<br>
 {{#if unAnsweredItemsList}}
 <div style="background-color: red">
@@ -8,7 +9,7 @@ The following items are unanswered:
 </div>
 {{/if}}
 <br>
-{{#each model as |question|}}
+{{#each model.questions as |question|}}
   {{component question.type question=question setAction="updateResponse"}}
   <br>
 {{/each}}

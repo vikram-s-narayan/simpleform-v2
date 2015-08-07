@@ -1,4 +1,6 @@
 {{question.questionText}}<br>
 {{input type='text' placeholder=question.placeholder value=inputVal}}
 
-{{inputVal}}
+{{#if question.isRequired}}
+  (required)
+{{/if}}

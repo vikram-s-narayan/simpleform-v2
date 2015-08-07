@@ -1,0 +1,10 @@
+<input type="filepicker" data-fp-apikey="AtVdvx7J2S5eIxbmYpizgz"
+onchange="var y = event.fpfile.url;
+          var s = document.getElementById('filePicker');
+          console.log(s);
+            s.value = y;">
+
+{{input type='text' value=inputVal id="filePicker"}}
+<button {{action "saveURL"}}>Save </button>
+<br>
+Image => <img src={{imgVal}}>
