@@ -10,7 +10,7 @@ export default Ember.Route.extend({
   actions: {
 
     addQuestion: function() {
-      var survey = this.modelFor('survey').id;
+      var survey = this.modelFor('survey');
       var controller = this.controller;
       var type = controller.get('type');
       var name = controller.get('name');
@@ -22,28 +22,39 @@ export default Ember.Route.extend({
       var questionText = controller.get('questionText');
       var isRequired = controller.get('isRequired');
       var store = this.store;
+      var position;
 
-      this.store.find('survey', survey).then(function(survey){
-        var question = store.createRecord('question', {
-          survey: survey,
-          type: type,
-          name: name,
-          placeholder: placeholder,
-          value: value,
-          cols: cols,
-          rows: rows,
-          optionsArray: optionsArray,
-          questionText: questionText,
-          radioGridOptions: '',
-          radioGridStatements: '',
-          isRequired: isRequired
-          });
-          question.save();
+      //this.store.find('survey', survey).then(function(survey){
         survey.get('questions').then(function(questions){
-          questions.pushObject(question);
+          position = questions.length+1;
+        }).then(function(){
+          var question = store.createRecord('question', {
+            survey: survey,
+            type: type,
+            name: name,
+            placeholder: placeholder,
+            value: value,
+            cols: cols,
+            rows: rows,
+            optionsArray: optionsArray,
+            questionText: questionText,
+            radioGridOptions: '',
+            radioGridStatements: '',
+            isRequired: isRequired,
+            position: position
+            });
+            question.save().then(function(){
+              survey.get('questions').then(function(questions){
+              questions.pushObject(question);});
+
+          });
+        }).then(function(){
+          survey.save();
+          Ember.$("html, body").animate({ scrollTop: Ember.$(document).height() }, "slow");
         });
-        survey.save();
-      });
+
+
+      //});
     },
     addRadioGridQuestion: function(){
       var survey = this.modelFor('survey').id;
@@ -93,13 +104,12 @@ export default Ember.Route.extend({
     },
     reorderItems(newSortedQuestionsArray, draggedModel) {
       newSortedQuestionsArray.forEach(function(question, newPosition) {
-      question.set('position', newPosition);
-
+      question.set('position', newPosition+1);
+      console.log(draggedModel);
       if (question.get('isDirty')) { //if local model has changed but has not yet been sent to Firebase
         question.save();
       }
     });
-
     }
   }
 });

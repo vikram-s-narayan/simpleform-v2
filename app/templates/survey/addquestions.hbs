@@ -1,4 +1,6 @@
-{{outlet}}
+
+<div class="add-questions-wrapper">
+<div class="add-questions">
 Add questions for survey titled {{model.title}}<br>
 
 type: {{input type="text" value=type}}<br>
@@ -28,14 +30,18 @@ Required: {{input type="checkbox" name="isRequired" checked=isRequired}}<br>
 
 
 </p>
+</div>
 
+<div class="operate-questions">
 <p>
 {{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
   {{#each model.sortedQuestions as |question|}}
   {{#sortable-item tagName="li" model=question group=group handle=".handle"}}
-    {{question.questionText}}
-    <span class="handle">&varr;</span>
+    <div class="handle">{{question.position}}{{component question.type question=question}} </div>
   {{/sortable-item}}
   {{/each}}
 {{/sortable-group}}
 </p>
+
+</div>
+</div>

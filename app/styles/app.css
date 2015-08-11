@@ -5,3 +5,35 @@
 .companyLogo{
   width: 50%
 }
+.add-questions-wrapper{
+  width: 100%;
+
+  overflow: hidden;
+
+}
+
+.add-questions{
+  width: 20%;
+  position: fixed;
+  left: 20px;
+  bottom: 30px;
+  /*float:left;*/
+}
+
+.operate-questions{
+  float: right;
+  width: 70%;
+  /*overflow: hidden;*/
+
+}
+
+.handle{
+  cursor: pointer;
+  border:1px dashed #ddd;
+  min-height:80px;
+
+  width: 50%;
+  overflow: hidden;
+
+
+}
